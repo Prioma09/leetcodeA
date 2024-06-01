@@ -1,0 +1,26 @@
+class Solution
+{ 
+    static void reverse(Stack<Integer> s)
+    {
+        // add your code here
+        int n = s.size();
+        if(n == 1){
+            return;
+        }
+        
+        int top = s.pop();
+        reverse(s);
+        pushBottom(s,top);
+    }
+    
+    public static void pushBottom(Stack<Integer>s,int x){
+        if(s.size()==0){
+            s.push(x);
+            return;
+        }
+        
+        int top = s.pop();
+        pushBottom(s,x);
+        s.push(top);
+    }
+}
