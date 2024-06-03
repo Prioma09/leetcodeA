@@ -1,0 +1,27 @@
+Input: s = "coaching", t = "coding"
+Output: 4
+Explanation: Append the characters "ding" to the end of s so that s = "coachingding".
+Now, t is a subsequence of s ("coachingding").
+It can be shown that appending any 3 characters to the end of s will never make t a subsequence.
+
+class Solution {
+    public int appendCharacters(String s, String t) {
+        int sIndex = 0;
+        int tIndex = 0;
+
+        int sLength = s.length();
+        int tLength = t.length();
+
+        while(sIndex<sLength && tIndex<tLength){
+            if(s.charAt(sIndex) == t.charAt(tIndex)){
+                tIndex++;
+            }
+            sIndex++;
+        }
+
+        return tLength - tIndex;
+    }
+}
+
+
+/////////////O(min(n,m))
