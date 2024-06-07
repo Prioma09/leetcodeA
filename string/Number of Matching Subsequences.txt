@@ -1,0 +1,42 @@
+Input: s = "abcde", words = ["a","bb","acd","ace"]
+Output: 3
+Explanation: There are three strings in words that are a subsequence of s: "a", "acd", "ace".
+
+
+class Solution {
+    public int numMatchingSubseq(String s, String[] words) {
+        Map<String,Integer> map = new HashMap<>();
+
+        for(String word:words){
+            map.put(word,map.getOrDefault(word,0)+1);
+        }
+
+        int count = 0;
+
+        char[] sArray = s.toCharArray();
+
+        for(String str:map.keySet()){
+            char[] temp = str.toCharArray();
+
+            int i=0;
+            int j=0;
+
+            while(i<sArray.length && j<temp.length){
+                if(sArray[i] == temp[j]){
+                    i++;
+                    j++;
+                }else{
+                    i++;
+                }
+            }
+            if(j == temp.length){
+                count+=map.get(str);
+            }
+        }
+        return count;
+    }
+}
+
+///////////////////////////////////////////////////////
+Time complexity: O(N * M),
+Space complexity: O(M),

@@ -1,0 +1,28 @@
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> subset = new ArrayList<>();
+
+        createSubset(nums,0,res,subset);
+        return res;
+    }
+
+    private void createSubset(int[] nums,int index,List<List<Integer>> res,List<Integer> subset){
+        if(index == nums.length){
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+        subset.add(nums[index]);
+        createSubset(nums,index+1,res,subset);
+
+        subset.remove(subset.size()-1);
+        createSubset(nums,index+1,res,subset);
+
+    }
+}
+
+
+///////////////////////////////////////////////////
+Time Complexity :- BigO(2^N), For each element in the array, the algorithm makes two recursive calls, resulting in a time complexity of O(2^N), where N is the number of elements in the input array nums.
+
+Space Complexity :- BigO(N) for the call stack + BigO(2^N) for storing subsets.
