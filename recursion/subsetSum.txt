@@ -1,0 +1,33 @@
+Given a list arr of n integers, return sums of all subsets in it. Output sums can be printed in any order.
+
+Input:
+n = 2
+arr[] = {2, 3}
+Output:
+0 2 3 5
+
+class Solution {
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int n) {
+        // code here
+        ArrayList<Integer> res = new ArrayList<>();
+        solve(0,0,arr,n,res);
+        return res;
+        
+    }
+    
+    public static void solve(int ind,int sum ,ArrayList<Integer> arr, int n,ArrayList<Integer> res){
+        
+        if(ind == n){
+            res.add(sum);
+            return;
+        }
+        
+        solve(ind+1,sum+arr.get(ind),arr,n,res);
+        
+        solve(ind+1,sum,arr,n,res);
+    }
+}
+
+
+// Time Complexity: O(2N), As we generate all the possibilities using recursion.
+// Space Complexity: O(2N), As we store all the subsets in the vector whose size is 2N, and recursive call stack is N.
